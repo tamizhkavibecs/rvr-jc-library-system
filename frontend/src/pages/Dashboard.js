@@ -18,8 +18,18 @@ const Dashboard = () => {
     (book) =>
       (book.title.toLowerCase().includes(search.toLowerCase()) ||
         book.author.toLowerCase().includes(search.toLowerCase())) &&
-      (deptFilter === "All" || book.department === deptFilter)
+      (deptFilter === "All" || book.department === deptFilter),
   );
+  const getDueDate = () => {
+    const today = new Date();
+    const dueDate = new Date(today);
+    dueDate.setDate(today.getDate() + 15); // Adds exactly 15 days
+    return dueDate.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+    });
+  };
 
   return (
     <div className="container mt-4">
@@ -73,6 +83,14 @@ const Dashboard = () => {
                 <span className="badge bg-info text-dark mb-2">
                   {book.department}
                 </span>
+                <div className="mt-3 p-2 bg-light rounded border border-info">
+                  <p className="mb-0 small text-dark">
+                    🕒 <strong>Return Period:</strong> 15 Days
+                  </p>
+                  <p className="mb-0 small text-danger fw-bold">
+                    📅 <strong>Due Date:</strong> {getDueDate()}
+                  </p>
+                </div>
                 <div className="mt-2">
                   {book.available_copies > 5 ? (
                     <span className="text-success fw-bold">
