@@ -9,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import AdminPanel from "./pages/AdminPanel";
+import Register from "./pages/Register";
 
 // Import Components
 import Navbar from "./components/Navbar";
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           {/* Public Route: Login */}
           <Route path="/" element={<Login />} />
+          <Route path="/register" element={<Register />} />
 
           {/* Protected Route: Student Dashboard */}
           <Route
